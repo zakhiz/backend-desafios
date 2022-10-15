@@ -22,7 +22,10 @@ class Usuario {
         return this.libros.push({titulo,autor});
     }
     getBookNames = () =>{
-        return this.libros;
+       return this.libros.map(libros => ([
+                libros.titulo,
+                libros.autor
+       ]))
     }
 }
 const usuario1 = new Usuario("carlos", "kratos");
