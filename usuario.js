@@ -22,10 +22,11 @@ class Usuario {
         return this.libros.push({titulo,autor});
     }
     getBookNames = () =>{
-       return this.libros.map(libros => ([
-                libros.titulo,
-                libros.autor
-       ]))
+       return this.libros.map(libros =>(
+        libros.titulo
+       )
+     ) 
+       
     }
 }
 const usuario1 = new Usuario("carlos", "kratos");
@@ -39,5 +40,6 @@ console.log(Qmascotas.length)
 const namesMascotas = usuario1.getMascotasNames
 console.log(namesMascotas()) 
 usuario1.addBook("harry Potter", "Rowling")
+usuario1.addBook("Demon slayer", "Koyoharu Gotouge")
 const namesBook = usuario1.getBookNames
 console.log(namesBook())
