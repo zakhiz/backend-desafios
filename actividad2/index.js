@@ -3,11 +3,11 @@ const container = new Container();
 
 
 let product = {
-    name : "fernet",
-    price : 600,
-    stock : 100,
-    vto: "30/12/2022",
-    codigo: 6396335758636,
+    name : "lavandina",
+    price : 100,
+    stock : 20,
+    vto: "30/11/2022",
+    codigo: 6525828235758636,
 
 }
 //!create product 
