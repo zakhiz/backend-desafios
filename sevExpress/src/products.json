@@ -1,0 +1,34 @@
+[
+  {
+    "name": "chocolate",
+    "price": 200,
+    "stock": 50,
+    "vto": "20/11/2022",
+    "codigo": 33535354613636,
+    "id": 1
+  },
+  {
+    "name": "orange juice",
+    "price": 300,
+    "stock": 60,
+    "vto": "22/11/2022",
+    "codigo": 363636613636,
+    "id": 2
+  },
+  {
+    "name": "milk",
+    "price": 400,
+    "stock": 80,
+    "vto": "30/11/2022",
+    "codigo": 351789135758636,
+    "id": 3
+  },
+  {
+    "name": "fernet",
+    "price": 600,
+    "stock": 100,
+    "vto": "30/12/2022",
+    "codigo": 6396335758636,
+    "id": 4
+  }
+]
