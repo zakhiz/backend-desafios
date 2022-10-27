@@ -1,6 +1,5 @@
-const Container = require('./app');
-const express = require('express');
-
+import Container from './app.js'
+import express from 'express'
  
 const app = express();
 const server = app.listen(8080,()=>{
