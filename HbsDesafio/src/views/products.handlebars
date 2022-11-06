@@ -1,0 +1,61 @@
+<div  class="container-product">
+	<h2  class="prod-reg">Productos Registrados</h2>
+	{{#if products}}
+		<table  >
+			<thead>
+				<tr class="container-titulos">
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Imagen</th>
+				</tr>
+			</thead>
+			<tbody >
+				{{#each products}}
+					<tr class="container-info">
+						<td >{{this.name}}</td>
+						<td >{{this.price}}</td>
+						<td >
+							<img class="foto" src='{{this.image}}' alt='{{this.name}}' />
+						</td>
+					</tr>
+				{{/each}}
+			</tbody>
+		</table>
+	{{else}}
+		<h2 class="not-prod">No se encontraron productos</h2>
+	{{/if}}
+	<div class="not-prod">
+		<a href='/products'>
+			<button class='btn' >Agregar producto</button>
+		</a>
+	</div>
+</div>
+
+
+<!--
+    <div class="container-product">
+    <h2 class="prod-reg">Productos Registrados</h2>
+{{#if products}}
+       <div class="container-titulos">
+        <p>Nombre</p>
+        <p>Precio</p>
+        <p>Imagen</p>
+       </div> 
+     <div class="container-info">
+        {{#each products}}
+            <p>{{this.name}}</p>
+            <p>${{this.price}}</p>
+            <div>
+                <img class="foto" src='{{this.image}}' alt='{{this.name}}'>
+            </div>
+        {{/each}}
+     </div>
+     {{else}}
+           <h2 class="not-prod">No hay productos Registrados</h2>
+     {{/if}}
+        <a href="/products" class="not-prod">
+            <button class="btn">Agregar Productos</button>
+        </a>  
+
+</div>
+-->
