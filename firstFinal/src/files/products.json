@@ -1,0 +1,22 @@
+[
+	{
+		"title": "bmw m5",
+		"description": "super deportivos",
+		"price": 2242242404214,
+		"stock": 30,
+		"imageUrl": "https://www.tuningblog.eu/es/wp-content/uploads/2021/12/BMW-M535i-E28-500-PS-Gold-Tuning-2.jpg",
+		"code": "zLD)n]X_pI50",
+		"id": 1,
+		"timeStamp": 1668789435364
+	},
+	{
+		"title": "bmw m2",
+		"description": "super deportivos",
+		"price": 2242242404214,
+		"stock": 30,
+		"imageUrl": "https://www.tuningblog.eu/es/wp-content/uploads/2021/12/BMW-M535i-E28-500-PS-Gold-Tuning-2.jpg",
+		"code": "1Mq1¡!}1a_dj",
+		"id": 2,
+		"timeStamp": 1668789446498
+	}
+]

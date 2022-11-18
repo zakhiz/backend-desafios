@@ -1,0 +1,10 @@
+<%-include('./partials/head')%> 
+
+<h1>Hola</h1>
+<%=papa%>
+
+<% users.forEach(user => { %>
+        <p><%=user.name%></p>
+        <p><%=user.edad%></p>
+        <br>
+<% }) %>
