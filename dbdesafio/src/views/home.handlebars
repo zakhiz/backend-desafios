@@ -3,11 +3,12 @@
 </div>
 
 
+{{!-- formulario carga productos --}}
 <div>
   <div class="container-form">
     <div >
       <h2>Ingresar un nuevo producto</h2>
-      <form onsubmit="return addProduct(this)">
+      <form id="formproduct">
         <div class="group">
           <label for="title"><b>Nombre</b></label>
           <input
@@ -33,16 +34,30 @@
           <input
             id="thumbnail"
             type="url"
-            name="thumbnail"
+            name="image"
             required
           />
         </div>
-        <button class="btn" >Enviar</button>
+        <div class="group">
+          <label for="price"><b>Description</b></label>
+          <textarea name="description" id="description" cols="30" rows="10" required></textarea>
+        </div>
+        <div class="group">
+          <label for="price"><b>Stock</b></label>
+          <input
+            id="stock"
+            type="number"
+            name="Stock"
+            required
+          />
+        </div>
+        <button class="btn" type="submit" value="Enviar" >Enviar</button>
       </form>
     </div>
   </div>
 </div>
 
+{{!-- lista de productos que se van agregando --}}
 <div >
   <div class="container-products">
     <div id="products">
@@ -53,6 +68,8 @@
             <th class="t">Nombre</th>
             <th class="t">Precio</th>
             <th class="t">Imagen</th>
+            <th class="t">description</th>
+            <th class="t">stock</th>
           </tr></thead>
         <tbody id="tbproducts"></tbody>
       </table>
@@ -60,19 +77,20 @@
     </div>
   </div>
   
+  {{!-- chat de usuarios --}}
   <div class="container-chat" >
     <div class="chat-in-box"  id="chat">
     <h3 class="chat-box">chat</h3>
     <div id="messages"></div>
-    <form
+    <form id="form-chating"
       class="form-chat"
-      onsubmit="return addMessage(this)"
       autocomplete="off"
     >
       <label for="email">User</label>
       <input
         type="text"
         id="user"
+        name="email"
         placeholder="Ingresa tu usuario"
         required
       />
@@ -80,6 +98,7 @@
       <input
         type="text"
         id="message"
+        name="mensaje"
         placeholder="Enviar mensajes..."
         required
       />

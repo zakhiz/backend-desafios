@@ -1,71 +1,69 @@
+const productos = document.getElementById('tbproducts');
+const formProduct = document.getElementById('formproduct');
 const socket = io();
 
-socket.on("products", (data) => {
-    render(data);
-  });
-  
-  socket.on("messages", (data) => {
-    renderMessages(data);
-  });
-  
-  function render(data) {
-    let html = data
-      .map((elem, index) => {
-        return `<tr>
-      <td>${elem.title}</td>
-      <td>$${elem.price}</td>
-      <td><img src="${elem.thumbnail}" alt="Imagen del producto" class="ft-edit" ></td>
-      </tr>`;
-      })
-      .join(" ");
-    document.getElementById("tbproducts").innerHTML = html;
-  }
-  
-  function renderMessages(data) {
-    let html = data
-      .map((elem, index) => {
-        return `<div class="bg-chat">
-          <span>${elem.email}</span>
-          <span>[${elem.date}]:</span>
-          <span>${elem.message}</span></div>`;
-      })
-      .join(" ");
-    document.getElementById("messages").innerHTML = html;
-  }
-  
-  function addProduct(e) {
-    let producto = {
-      title: document.getElementById("title").value,
-      price: document.getElementById("price").value,
-      thumbnail: document.getElementById("thumbnail").value,
-    };
-    socket.emit("new-product", producto);
-    document.getElementById("title").value = "";
-    document.getElementById("price").value = "";
-    document.getElementById("thumbnail").value = "";
-    return false;
-  }
-  
-  function addMessage(e) {
-    let message = {
-      email: document.getElementById("user").value,
-      message: document.getElementById("message").value,
-      date: formatDate(),
-    };
-    socket.emit("new-message", message); 
-  
-    document.getElementById("message").value = "";
-    document.getElementById("message").focus();
-  
-    return false;
-  }
-  
-  const formatDate = () => {
-    let date = new Date();
-    let formatted_date = `${date.getDate()}/${("0" + (date.getMonth() + 1)).slice(
-      -2
-    )}/${date.getFullYear()} ${date.getHours()}:${
-      date.getMinutes() < 10 ? "0" + date.getMinutes() : date.getMinutes()
-    }:${date.getSeconds() < 10 ? "0" + date.getSeconds() : date.getSeconds()}`;
-    return formatted_date;
-  };
+
+formProduct.addEventListener('submit',e=>{
+    e.preventDefault();
+    const product = {
+       title : formProduct[0].value,
+       price : formProduct[1].value,
+       image : formProduct[2].value,
+       description : formProduct[3].value,
+       stock : formProduct[4].value
+    }
+    console.log(product);
+    socket.emit('product',product);
+    e.target.reset();
+})
+
+
+socket.on('products',data =>{
+   productos.innerHTML = "";
+   data.forEach(product  => {
+      productos.innerHTML += `
+
+        <tr class="text-center">
+            <td class="align-middle">${product.title}</td>
+            <td class="align-middle">${product.price}</td>
+            <td class="align-middle">
+                <img src="${product.image}" alt="${product.name}" width="100px">
+            </td>
+            <td>${product.description}</td>
+            <td>${product.stock}</td>
+        </tr>
+      `
+   }); 
+})
+
+const formChat = document.getElementById('form-chating');
+const user = document.getElementById('user');
+const showMessage = document.getElementById('messages');
+const msg = document.getElementById('message');
+
+
+formChat.addEventListener('submit',e=>{
+   e.preventDefault();
+   if(user.value == '') return alert('ingrese un email')
+   const chat ={
+      email :user.value,
+      mensaje : msg.value,
+      date : new Date().toLocaleString()
+   }
+   socket.emit('message',chat);
+   e.target.reset(); 
+});
+
+socket.on('messages', data =>{
+  showMessage.innerHTML = '';
+  data.forEach(msg=>{
+    showMessage.innerHTML += `
+      <div>
+          <p>${msg.Date}</p> 
+          <p>${msg.email}</p> 
+          <p>${msg.mensaje}</p> 
+      </div>
+    
+    `
+  })
+})

@@ -1,7 +1,6 @@
 import knex from "knex";
 
-
-class ContenedorSQL {
+export default class ContainerSQL {
     constructor(config, tabla) {
         this.knex = knex(config)
         this.table = tabla 
@@ -23,7 +22,7 @@ class ContenedorSQL {
         }
     }
 
-    async getById(id) {
+    async getById(id) { 
         try {
             return this.knex.select("*").from(this.table).where("id", id)
         } catch(error) {
@@ -39,14 +38,6 @@ class ContenedorSQL {
         }
     }
 
-    async deleteAll() { 
-        try {
-            return this.knex.delete().from(this.table)
-        } catch(error) {
-            console.log(error)
-        }
-    }
-
     async update(objeto, id) { 
         try {
             return this.knex.from(this.table).where("id", id).update(objeto)
@@ -56,4 +47,3 @@ class ContenedorSQL {
     }
 }
 
-export default ContenedorSQL

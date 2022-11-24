@@ -16,7 +16,7 @@ try {
 
     if (!exist) { 
         await db.schema.createTable("products", table => {
-            table.increments("id").primary() 
+            table.increments("id").primary()
             table.string("title", 30).notNullable() 
             table.float("price").notNullable()
             table.string("image", 1024)
@@ -32,14 +32,13 @@ try {
 try {
     let exist = await db.schema.hasTable("messages")
 
-    if (!exist) { 
+    if (!exist) {
         await db.schema.createTable("messages", table => {
-            table.increments("id").primary()
-            table.string("user", 30)
-            table.string("message", 1000)
-            table.string("fecha", 30)
-            table.string("hora", 30)
-            console.log("Tabla de mensajes creada!")
+            table.increments("id").primary();
+            table.string("email", 30);
+            table.string("mensaje", 1000);
+            table.string("Date",30);
+            console.log("Tabla de mensajes creada!");
         })
     }
 } catch(error) {
