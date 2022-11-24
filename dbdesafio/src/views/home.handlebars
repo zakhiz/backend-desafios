@@ -1,0 +1,96 @@
+<div class="container-title">
+        <h1>Productos en vivo</h1>
+</div>
+
+
+{{!-- formulario carga productos --}}
+<div>
+  <div class="container-form">
+    <div >
+      <h2>Ingresar un nuevo producto</h2>
+      <form onsubmit="return addProduct(this)">
+        <div class="group">
+          <label for="title"><b>Nombre</b></label>
+          <input
+            id="title"
+            type="text"
+            name="title"
+            required
+          />
+        </div>
+        <div class="group">
+          <label for="price"><b>Precio</b></label>
+          <input
+            id="price"
+            type="number"
+            name="price"
+            min="1"
+            step="0.01"
+            required
+          />
+        </div>
+        <div class="group">
+          <label for="thumbnail"><b>Url de imagen</b></label>
+          <input
+            id="thumbnail"
+            type="url"
+            name="thumbnail"
+            required
+          />
+        </div>
+        <button class="btn" >Enviar</button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{{!-- lista de productos que se van agregando --}}
+<div >
+  <div class="container-products">
+    <div id="products">
+    <h3 class="title-list">Lista de productos</h3>
+    <div>
+      <table  id="tableOfProducts">
+        <thead><tr >
+            <th class="t">Nombre</th>
+            <th class="t">Precio</th>
+            <th class="t">Imagen</th>
+          </tr></thead>
+        <tbody id="tbproducts"></tbody>
+      </table>
+    </div>
+    </div>
+  </div>
+  
+  {{!-- chat de usuarios --}}
+  <div class="container-chat" >
+    <div class="chat-in-box"  id="chat">
+    <h3 class="chat-box">chat</h3>
+    <div id="messages"></div>
+    <form
+      class="form-chat"
+      onsubmit="return addMessage(this)"
+      autocomplete="off"
+    >
+      <label for="email">User</label>
+      <input
+        type="text"
+        id="user"
+        placeholder="Ingresa tu usuario"
+        required
+      />
+      <label for="message">Mensaje</label>
+      <input
+        type="text"
+        id="message"
+        placeholder="Enviar mensajes..."
+        required
+      />
+      <input class="btn btn-cht" type="submit" value="Enviar" />
+    </form>
+    </div>
+  </div>
+</div>
+
+<script src="/socket.io/socket.io.js"></script>
+<script src="/home.js"></script>

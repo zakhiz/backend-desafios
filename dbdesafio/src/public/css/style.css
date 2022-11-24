@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;1,300&display=swap');
+*{
+    font-family: 'Ubuntu', sans-serif;
+}
+body{
+    background: #9d4edd;
+}
+.container-title{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.title-form{
+    text-align: center;
+}
+.container-form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+.group{
+    display: flex;
+    flex-direction: column;
+    margin-top: 7px;
+    margin-bottom: 10px;
+}
+.btn{
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    border-radius: 8px;
+}
+.container-products{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.t{
+    padding: 10px;
+}
+.title-list{
+    text-align: center;
+}
+.bg-chat{
+    width: 500px;
+    background: #e0aaff;
+}
+.container-chat{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.chat-box{
+    text-align: center;
+}
+.chat-in-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.form-chat{
+    padding: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    margin-bottom: 5px;
+}
+.btn-cht{
+    margin-top: 5px;
+}
+.ft-edit{
+    width: 300px;
+    height: 200px;
+    border-radius: 10px;
+    margin-left: 20px;
+}
