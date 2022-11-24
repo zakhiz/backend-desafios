@@ -1,14 +1,13 @@
 import knex from "knex";
 
-// Esta clase crea un objeto que manipula un archivo sqlite3 con muchas tablas dentro. Dichas tablas contienen objetos (representados por filas) que pueden ser agregados, modificados, borrados y consultados
 
 class ContenedorSQL {
     constructor(config, tabla) {
         this.knex = knex(config)
-        this.table = tabla // Nombre de la tabla
+        this.table = tabla 
     }
 
-    async getAll() { // Trae todas las filas de la tabla
+    async getAll() { 
         try {
             return this.knex.select("*").from(this.table)
         } catch(error) {
@@ -16,7 +15,7 @@ class ContenedorSQL {
         }
     }
 
-    async save(objeto) { // Guarda un objeto (como fila) en la tabla
+    async save(objeto) { 
         try {
             return this.knex.insert(objeto).into(this.table)
         } catch(error) {
@@ -24,7 +23,7 @@ class ContenedorSQL {
         }
     }
 
-    async getById(id) { // Trae la fila correspondiente al id pasado como parámetro
+    async getById(id) {
         try {
             return this.knex.select("*").from(this.table).where("id", id)
         } catch(error) {
@@ -32,7 +31,7 @@ class ContenedorSQL {
         }
     }
 
-    async deleteById(id) { // Borra el objeto con este id
+    async deleteById(id) { 
         try {
             return this.knex.delete().from(this.table).where("id", id)
         } catch(error) {
@@ -40,7 +39,7 @@ class ContenedorSQL {
         }
     }
 
-    async deleteAll() { // Borra todos los objetos
+    async deleteAll() { 
         try {
             return this.knex.delete().from(this.table)
         } catch(error) {
@@ -48,7 +47,7 @@ class ContenedorSQL {
         }
     }
 
-    async update(objeto, id) { // Reemplaza el objeto con este id por el nuevo pasado como parámetro
+    async update(objeto, id) { 
         try {
             return this.knex.from(this.table).where("id", id).update(objeto)
         } catch(error) {
