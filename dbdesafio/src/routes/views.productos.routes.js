@@ -11,12 +11,11 @@ router.get('/',(req,res)=>{
 
 const contenedorSQL = new ContenedorSQL(sqliteOptions, "products")
 
-router.post("/", uploader.single("image"), async (req, res) => { // Agrega un producto al sqlite3 gracias al formulario de la ruta raíz
+router.post("/", uploader.single("image"), async (req, res) => { 
     const producto = req.body;
     producto.image = `${req.protocol}://${req.hostname}:8080/images/${req.file.filename}`
-    // await contenedor.save(producto)
     await contenedorSQL.save(producto)
-    res.redirect("/") // Te redirige a la ruta raíz una vez que hayas enviado el formulario
+    res.redirect("/") 
 })
 
 export default router;

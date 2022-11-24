@@ -52,7 +52,7 @@ socket.on("products", (data) => {
       message: document.getElementById("message").value,
       date: formatDate(),
     };
-    socket.emit("new-message", message); // new-message es el nombre del evento (recordatorio)
+    socket.emit("new-message", message); 
   
     document.getElementById("message").value = "";
     document.getElementById("message").focus();
