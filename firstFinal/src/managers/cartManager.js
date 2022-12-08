@@ -1,4 +1,3 @@
-import { json } from 'express';
 import fs, { existsSync } from 'fs';
 import __dirname from "../utils.js";
 

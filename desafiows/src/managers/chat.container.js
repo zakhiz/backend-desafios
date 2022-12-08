@@ -1,5 +1,4 @@
 import fs from "fs";
-import { parse } from "path";
 import __dirname from "../utils.js";
 
 const direction = (name) => `${__dirname}/json/${name}.json`;

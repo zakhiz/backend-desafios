@@ -1,4 +1,3 @@
-import { timeStamp } from 'console';
 import fs from 'fs';
 import __dirname from '../utils.js';
 
