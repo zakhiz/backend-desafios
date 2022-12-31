@@ -1,35 +1,37 @@
 import { Router } from "express";
-import userModel from '../models/User.js';
+import passport from "passport";
+
 const router = Router();
-router.post('/register',async(req,res)=>{
-    const {first_name,last_name,email,password} = req.body;
-    if(!first_name || !last_name || !email || !password) return res.status(400).send({status : 'error', error : 'incomplete values'});
-    const exists = await userModel.findOne({email});
-    if(exists) return res.status(400).send({status : 'error', error : 'user exists'});
-    const user = {
-        first_name,
-        last_name,
-        email,
-        password
-    };
-    const result = await userModel.create(user);
-    res.send({status : 'success', payload : result._id});
+router.post('/register',passport.authenticate('register',{failureRedirect:'/api/sessions/failedregister'}),async(req,res)=>{
+    const user = req.user;
+    res.send({status:"success",payload:user._id})
 })
 
-router.post('/login',async (req,res)=>{
-    const {email,password} = req.body;
-    if(!email || !password) return res.status(400).send({status : 'error', error : 'incomplete values'});
-    const user = await userModel.findOne({email,password});
-    if(!user) return res.status(400).send({status : 'error' , error : 'user o contraseña incorrecto'});
+router.get('/failedregister',(req,res)=>{
+    console.log("Passport falló");
+    res.status(500).send({status:"error",error:"Error de passport"})
+})
+router.post('/login',passport.authenticate('login'),async (req,res)=>{
     req.session.user = {
-        first_name : user.first_name,
-        last_name : user.last_name,
-        email : user.email,
-        role : user.role
+        name: `${req.user.first_name} ${req.user.last_name}`,
+        email: req.user.email,
+        role: req.user.role
     }
-    res.send({status :'success',message: 'logueado'});
-
+    res.send({status:"success", message:"Logueado!"})
 });
+
+router.get('/github',passport.authenticate('github'),(req,res)=>{
+    //! este primer punto, Abre la aplicacion de github para solicitar los datos.
+})
+router.get('/githubcallback',passport.authenticate('github'),(req,res)=>{
+    //! este segundo , Toma los datos que haya dado github con passport
+    req.session.user = {
+        name: `${req.user.first_name}`,
+        email: req.user.email,
+        role: req.user.role
+    }
+    res.send({status:"success", message:"Logueado!"})
+})
 
 router.get('/user', (req,res) =>{
     return res.send(req.session.user)

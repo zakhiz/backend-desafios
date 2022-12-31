@@ -11,12 +11,11 @@ form.addEventListener('submit',async (e) =>{
         headers : {
             'Content-Type' : 'application/json'
         }
-    }).then(result => result.json()).then(json => console.log(json));
-    
-    const user = await fetch('api/sessions/user').then(res => res.json());
+    }).then(res=>res.json());
 
+    const user = await fetch('api/sessions/user').then(res => res.json());
     login.innerHTML += `
-     <h2>Welcome ${user.first_name}</h2>
+     <h2>Welcome ${user.name}</h2>
      <button id="logout">logout</button>
     ` 
     const adios = document.getElementById('logout');
@@ -25,7 +24,7 @@ form.addEventListener('submit',async (e) =>{
         login.innerHTML = '';
         const user = await fetch('api/sessions/user').then(res => res.json());
         login.innerHTML += `
-        <h2>bye ${user.first_name}</h2>
+        <h2>bye ${user.name}</h2>
         `
         setTimeout(() => {
             window.location = '/'   
