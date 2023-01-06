@@ -8,10 +8,14 @@ router.post('/register',passport.authenticate('register',{failureRedirect:'/api/
 })
 
 router.get('/failedregister',(req,res)=>{
-    console.log("Passport falló");
-    res.status(500).send({status:"error",error:"Error de passport"})
-})
-router.post('/login',passport.authenticate('login'),async (req,res)=>{
+    res.status(500).send({status:"error",error:"Error de registro"})
+});
+
+router.get('/failedlogin',(req,res)=>{
+    res.status(500).send({status:"error",error:"Error de login"})
+});
+
+router.post('/login',passport.authenticate('login',{failureRedirect:'/api/sessions/failedlogin'}),async (req,res)=>{
     req.session.user = {
         name: `${req.user.first_name} ${req.user.last_name}`,
         email: req.user.email,
