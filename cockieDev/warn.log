@@ -1,0 +1,21 @@
+{"level":"warning","message":"GET en /passwords en el host 8080- 21:22:29}"}
+{"level":"warning","message":"GET en /login en el host 8080- 21:25:49}"}
+{"level":"warning","message":"GET en /api/sessions/current en el host 8080- 21:26:13}"}
+{"level":"warning","message":"GET en /api/sessions en el host 8080- 21:26:19}"}
+{"level":"warning","message":"GET en /api/sessions/register en el host 8080- 21:26:37}"}
+{"level":"warning","message":"GET en /api/sessions/register en el host 8080- 21:26:39}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:28:18}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:28:20}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:28:20}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:28:20}"}
+{"level":"warning","message":"GET en /api/sessions/current en el host 8080- 21:29:05}"}
+{"level":"warning","message":"GET en /api/sessions/current en el host 8080- 21:29:05}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:29:58}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:30:10}"}
+{"level":"warning","message":"GET en / en el host 8080- 21:30:11}"}
+{"level":"warning","message":"GET en /babas en el host 8080- 21:30:48}"}
+{"level":"warning","message":"GET en /passwords en el host 8080- 21:31:18}"}
+{"level":"warning","message":"GET en /users en el host 8080- 21:31:22}"}
+{"level":"warning","message":"GET en /api/sessions/current en el host 8080- 21:31:28}"}
+{"level":"warning","message":"GET en /api/sessions/users en el host 8080- 21:31:33}"}
+{"level":"error","message":"GET en /failedregister - 21:34:09"}

@@ -10,8 +10,10 @@ import passport from 'passport';
 import initializePassport from './config/passport.config.js';
 import config from "./config/config.js";
 import {fork} from 'child_process';
+import { addLogger } from "./utils.js";
 const app = express();
-
+const PORT = process.env.PORT || 8080;
+app.use(addLogger)
 
 const connection = mongoose.connect(`mongodb+srv://CodeTest:${config.mongo.password}@codercluster.4kgfcft.mongodb.net/${config.mongo.db}?retryWrites=true&w=majority`);
 
@@ -42,7 +44,7 @@ app.get("/info", async (req, res) => {
         processId: process.pid,
         carpeta: process.cwd()
     }
-    res.render("info", { info })
+    res.send({status : 'success',payload : info })
 })
 
 app.get("/api/randoms",(req,res) => {
@@ -68,4 +70,10 @@ app.use(express.static(__dirname+'/public'))
 app.use('/',viewsRouter);
 app.use('/api/sessions',registerRouter);
 
-app.listen(8080, () => console.log('listening'));
+
+app.get('*',(req,res)=>{
+    req.logger.warning(`${req.method} en ${req.url} en el host ${PORT}- ${new Date().toLocaleTimeString()}}`)
+    res.send('Ruta no encontrada')
+})
+
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
