@@ -107,3 +107,26 @@ app.get("/info", async (req, res) => {
 app.get('/',(req,res)=>{
     res.send({status : "hola",message: `hola ${process.pid}`})
 })
+
+app.get('/randoms', (req, res) => {
+    const primes = []
+    const max = Number(req.query.max) || 1000
+    for (let i = 1; i <= max; i++) {
+        if (isPrime(i)) primes.push(i)
+    }
+    res.json(primes)
+})
+
+function isPrime(num) {
+    if ([2, 3].includes(num)) return true;
+    else if ([2, 3].some(n => num % n == 0)) return false;
+    else {
+        let i = 5, w = 2;
+        while ((i ** 2) <= num) {
+            if (num % i == 0) return false
+            i += w
+            w = 6 - w
+        }
+    }
+    return true
+ }
