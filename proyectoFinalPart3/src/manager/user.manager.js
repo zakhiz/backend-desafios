@@ -10,15 +10,15 @@ class UserManager {
   };
 
   getById = async (id) => {
-    return await this.model.findById(id);
+    return await this.model.findById({_id : id});
   };
   
   deleteById = async (id) => {
     await this.model.deleteById(id);
   };
 
-  updateById = async (id, userUpdate) => {
-    await this.model.findByIdAndUpdate(id, productUp);
+  updateById = async (id,cartUp) => {
+     await this.model.updateOne({_id: id}, {$set: { cart : cartUp}})
   };
 }
 

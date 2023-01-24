@@ -11,7 +11,7 @@ class ProductManager {
   };
 
   getById = async (id) => {
-    return await this.model.findById(id);
+    return await this.model.findById({_id : id});
   };
   add = async (product) => {
       product.patent = codeAlt(6);

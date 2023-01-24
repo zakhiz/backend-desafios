@@ -18,7 +18,7 @@ const schema = new mongoose.Schema({
     type: String,
     default: "user",
   },
-  idCart: Number,
+  cart : Array
 });
 const userModel = mongoose.model(collection, schema);
 
