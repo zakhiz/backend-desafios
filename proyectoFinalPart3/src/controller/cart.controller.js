@@ -1,8 +1,8 @@
-import ProductManager from "../manager/product.manager.js";
-import UserManager from "../manager/user.manager.js";
+import ProductManager from "../DAO/manager/product.manager.js";
+import UserManager from "../DAO/manager/user.manager.js";
 import Jwt from "jsonwebtoken";
 import config from "../config/config.js";
-import userModel from "../models/userModel.js";
+import userModel from "../DAO/models/userModel.js";
 import nodemailer from "nodemailer";
 
 const cartadd = new UserManager();

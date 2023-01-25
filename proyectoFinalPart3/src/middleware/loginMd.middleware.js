@@ -1,6 +1,6 @@
 import  Jwt  from "jsonwebtoken";
 import config from "../config/config.js";
-import userModel from "../models/userModel.js";
+import userModel from "../DAO/models/userModel.js";
 export const loginMd = async (req, res, next) => {
     try {
         let token = req.headers['cookie']

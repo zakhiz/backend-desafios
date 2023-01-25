@@ -1,6 +1,6 @@
 import  Jwt  from "jsonwebtoken";
 import config from "../config/config.js";
-import userModel from "../models/userModel.js";
+import userModel from "../DAO/models/userModel.js";
 export const viewAdmin = async (req, res, next) => {
     let token = req.headers['cookie']
     if(!token){

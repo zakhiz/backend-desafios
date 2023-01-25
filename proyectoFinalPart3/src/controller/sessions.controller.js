@@ -1,7 +1,7 @@
 import config from "../config/config.js";
 import { createHash, validatePassword } from "../utils.js";
 import Jwt from "jsonwebtoken";
-import userModel from "../models/userModel.js";
+import userModel from "../DAO/models/userModel.js";
 
 const register = async (req, res) => {
   const { first_name, last_name, email, password, age, phone_number, address } =

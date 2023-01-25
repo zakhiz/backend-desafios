@@ -1,7 +1,7 @@
-import ProductManager from "../manager/product.manager.js";
+import ProductManager from "../DAO/manager/product.manager.js";
 import Jwt from "jsonwebtoken";
 import config from "../config/config.js";
-import userModel from "../models/userModel.js";
+import userModel from "../DAO/models/userModel.js";
 
 const prodManager = new ProductManager();
 const login = (req, res) => {

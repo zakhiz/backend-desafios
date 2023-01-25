@@ -1,5 +1,5 @@
 import productModel from "../models/productModel.js";
-import { codeAlt } from "../functions/code.js";
+import { codeAlt } from "../../functions/code.js";
 
 class ProductManager {
   constructor() {
