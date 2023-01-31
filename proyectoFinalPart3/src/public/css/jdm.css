@@ -264,6 +264,7 @@
 .container__product-img {
   width: 400px;
   height: 360px;
+  border-radius: 2px 14px 2px 14px;
 }
 .container_product-text {
   font-family: "Kanit", sans-serif;

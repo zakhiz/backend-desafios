@@ -1,8 +1,7 @@
 import config from "../config/config.js";
 import { createHash, validatePassword } from "../utils.js";
 import Jwt from "jsonwebtoken";
-import userModel from "../DAO/models/userModel.js";
-
+import { userService } from "../services/repositories/services.js";
 const register = async (req, res) => {
   const { first_name, last_name, email, password, age, phone_number, address } =
     req.body;
@@ -18,7 +17,7 @@ const register = async (req, res) => {
     return res
       .status(400)
       .send({ status: "error", error: " incomplete values" });
-  const exists = await userModel.findOne({ email });
+  const exists = await userService.getBy({ email });
   if (exists)
     return res
       .status(400)
@@ -34,7 +33,7 @@ const register = async (req, res) => {
     address,
     avatar: `${req.protocol}://${req.hostname}:8080/images/${req.file.filename}`,
   };
-  const result = await userModel.create(user);
+  const result = await userService.save(user);
   res.send({ status: "success", payload: result._id });
 };
 
@@ -44,7 +43,7 @@ const login = async (req, res) => {
     return res
       .status(400)
       .send({ status: "error", error: "Incomplete values" });
-  const user = await userModel.findOne({ email });
+  const user = await userService.getBy({ email });
   if (!user)
     return res
       .status(404)

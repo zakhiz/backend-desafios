@@ -1,15 +1,15 @@
-import ProductManager from "../DAO/manager/product.manager.js";
-
-const prodManager = new ProductManager();
+import { codeAlt } from "../functions/code.js";
+// const prodManager = new ProductManager();
+import { productService } from "../services/repositories/services.js";
 
 const getAll = async (req, res) => {
-  const prods = await prodManager.getAll();
+  const prods = await productService.getAll();
   res.send({status : 'success',payload : prods})
 };
 
 const getById = async (req, res) => {
   const { pid } = req.params;
-  const result = await prodManager.getById(pid);
+  const result = await productService.getBy(pid);
   res.send({ status: "success", payload: result });
 };
 
@@ -27,13 +27,14 @@ const add = async (req, res) => {
     price,
     image,
   };
-  const result = await prodManager.add(newProduct);
+  newProduct.patent = codeAlt(10)
+  const result = await productService.save(newProduct);
   res.send({ status: "success", payload: result });
 };
 
 const update = async (req, res) => {
   const { pid } = req.params;
-  const products = await prodManager.getAll();
+  const products = await productService.getAll();
 
   const { model, characteristics, stock, price, image } = req.body;
 
@@ -57,7 +58,7 @@ const update = async (req, res) => {
 
 const deleteById = async (req, res) => {
   const { pid } = req.params;
-  const productDel = await prodManager.getAll();
+  const productDel = await productService.getAll();
   if (productDel.some((obj) => obj.id == pid)) {
     const result = await prodManager.deleteById(pid);
     res.send({ status: "success", payload: result._id });

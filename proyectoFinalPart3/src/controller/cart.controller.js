@@ -1,29 +1,25 @@
-import ProductManager from "../DAO/manager/product.manager.js";
-import UserManager from "../DAO/manager/user.manager.js";
 import Jwt from "jsonwebtoken";
 import config from "../config/config.js";
-import userModel from "../DAO/models/userModel.js";
 import nodemailer from "nodemailer";
-
-const cartadd = new UserManager();
-const prodt = new ProductManager();
+import { userService,productService } from "../services/repositories/services.js";
 
 const addprod = async (req, res) => {
   const { id } = req.body;
-  const product = await prodt.getById(id);
+  const product = await productService.getById(id);
   let tokenized = req.cookies.itZ2zXYh6X;
   const decoded = Jwt.verify(tokenized, config.jwt.SECRET);
-  const uid = await userModel.find({ _id: decoded.id });
-  let userId = uid[0]._id;
-  let userData = await cartadd.getById(userId);
+  const uid = await userService.getBy({ _id: decoded.id });
+  let userId = uid._id;
+  let userData = await userService.getById(userId.toString());
   let cart = userData.cart;
   cart.push(product);
-  await cartadd.updateById(userId, cart);
+  await userService.updateOne(userId, cart);
+  res.send({status : "success"})
 };
 
 const mail = async (req, res) => {
   const { id } = req.body;
-  let usercart = await cartadd.getById(id);
+  let usercart = await userService.getById(id);
   let orden = usercart.cart;
 
   const transport = nodemailer.createTransport({

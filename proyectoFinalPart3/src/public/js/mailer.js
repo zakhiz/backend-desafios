@@ -8,6 +8,7 @@ caadd.addEventListener("click", async (e) => {
       "Content-Type": "application/json",
     },
   }).then((res) => res.json());
+  
   Toastify({
     text: "compra exitosa",
     duration: 3000,

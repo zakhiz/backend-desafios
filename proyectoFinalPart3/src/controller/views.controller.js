@@ -1,9 +1,7 @@
-import ProductManager from "../DAO/manager/product.manager.js";
 import Jwt from "jsonwebtoken";
 import config from "../config/config.js";
-import userModel from "../DAO/models/userModel.js";
+import { userService,productService } from "../services/repositories/services.js";
 
-const prodManager = new ProductManager();
 const login = (req, res) => {
   res.render("login");
 };
@@ -11,7 +9,7 @@ const register = (req, res) => {
   res.render("register");
 };
 const products = async (req, res) => {
-  const product = await prodManager.getAll();
+  const product = await productService.getAll();
   let newProducts = [];
   for (let i = 0; i < product.length; i++) {
     newProducts.push({
@@ -34,14 +32,14 @@ const addproducts = (req, res) => {
 const cartShopping = async (req, res) => {
   let tokenized = req.cookies.itZ2zXYh6X;
   const decoded = Jwt.verify(tokenized, config.jwt.SECRET);
-  const user = await userModel.findById(decoded.id);
-  const iduser = JSON.stringify(user._id); //TODO CAMBIAR A .TOSTRING()
-  const cartuser = await userModel.findById(JSON.parse(iduser));
+  const user = await userService.getById(decoded.id);
+  const iduser = user._id.toString(); //TODO CAMBIAR A .TOSTRING()
+  const cartUser = await userService.getById(iduser)
   const infoUser =[]
   infoUser.push({
-    _id : cartuser._id
+    _id : cartUser._id
   })
-  let cart = cartuser.cart;
+  let cart = cartUser.cart;
   let newCart = [];
   for (let i = 0; i < cart.length; i++) {
     newCart.push({
@@ -55,7 +53,7 @@ const cartShopping = async (req, res) => {
 const profile = async (req, res) => {
   let tokenized = req.cookies.itZ2zXYh6X;
   const decoded = Jwt.verify(tokenized, config.jwt.SECRET);
-  const user = await userModel.findById(decoded.id);
+  const user = await userService.getById(decoded.id);
   const newUser =[]
   newUser.push({
     first_name : user.first_name,

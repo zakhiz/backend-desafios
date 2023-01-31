@@ -2,7 +2,6 @@ const add = document.querySelectorAll(".added");
 for (let i = 0; i < add.length; i++) {
   add[i].addEventListener("click", async (e) => {
     const id = e.target.dataset;
-    console.log(id);
     await fetch("/api/cart", {
       method: "POST",
       body: JSON.stringify(id),
