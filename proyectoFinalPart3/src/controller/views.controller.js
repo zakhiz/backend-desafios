@@ -35,7 +35,7 @@ const cartShopping = async (req, res) => {
   let tokenized = req.cookies.itZ2zXYh6X;
   const decoded = Jwt.verify(tokenized, config.jwt.SECRET);
   const user = await userModel.findById(decoded.id);
-  const iduser = JSON.stringify(user._id);
+  const iduser = JSON.stringify(user._id); //TODO CAMBIAR A .TOSTRING()
   const cartuser = await userModel.findById(JSON.parse(iduser));
   const infoUser =[]
   infoUser.push({
