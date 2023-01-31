@@ -2,6 +2,7 @@ import config from "../config/config.js";
 import { createHash, validatePassword } from "../utils.js";
 import Jwt from "jsonwebtoken";
 import { userService } from "../services/repositories/services.js";
+import UserDTO from "../DAO/DTO/User.dto.js";
 const register = async (req, res) => {
   const { first_name, last_name, email, password, age, phone_number, address } =
     req.body;
@@ -23,7 +24,7 @@ const register = async (req, res) => {
       .status(400)
       .send({ status: "error", error: "User already exists" });
   const hashedPassword = await createHash(password);
-  const user = {
+  const user = UserDTO.UserDbdto({
     first_name,
     last_name,
     email,
@@ -32,7 +33,7 @@ const register = async (req, res) => {
     phone_number,
     address,
     avatar: `${req.protocol}://${req.hostname}:8080/images/${req.file.filename}`,
-  };
+  });
   const result = await userService.save(user);
   res.send({ status: "success", payload: result._id });
 };

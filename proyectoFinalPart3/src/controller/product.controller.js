@@ -1,4 +1,4 @@
-import { codeAlt } from "../functions/code.js";
+import ProductDTO from "../DAO/DTO/product.dto.js";
 // const prodManager = new ProductManager();
 import { productService } from "../services/repositories/services.js";
 
@@ -20,14 +20,13 @@ const add = async (req, res) => {
       .status(400)
       .send({ status: "error", error: "incomplete values" });
 
-  const newProduct = {
+  const newProduct = ProductDTO.productDbdto({
     model,
     characteristics,
     stock,
     price,
     image,
-  };
-  newProduct.patent = codeAlt(10)
+  });
   const result = await productService.save(newProduct);
   res.send({ status: "success", payload: result });
 };
