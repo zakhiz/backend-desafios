@@ -1,10 +1,9 @@
 import mongoose from "mongoose";
 import User from "./models/user.model.js";
 import Product from "./models/product.model.js";
-import config from "../config/config.js";
 
 export default class Dao {
-  constructor() {
+  constructor(config) {
     this.connection = mongoose.connect(config.mongo.URL);
     const genericTimeStamps ={
         timestamps : {

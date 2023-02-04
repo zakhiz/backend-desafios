@@ -68,7 +68,12 @@ const login = async (req, res) => {
   res.cookie(config.jwt.COOKIE, token).send({ status: "success" });
 };
 
+const logout = (req,res) => {
+  res.clearCookie(config.jwt.COOKIE).send({status : 'success', message : "logged out"})
+}
+
 export default {
   login,
+  logout,
   register,
 };

@@ -13,26 +13,30 @@ for (let i = 0; i < add.length; i++) {
 }
 
 const account = document.getElementById("btnPerfil");
-const menu = document.getElementById('menu')
+const menu = document.getElementById("menu");
 account.addEventListener("click", (e) => {
   account.classList.add("hidden");
   menu.innerHTML = `
      <div class="menu" >
         <a class="nav__container-button" id="cerrar">close</a>
         <a class="nav__container-button" href="/profile">Profile</a>
-        <a class="nav__container-button" id = "logout">Logout</a>
      <div>
     `;
   const cerrar = document.getElementById("cerrar");
   cerrar.addEventListener("click", () => {
     account.classList.remove("hidden");
-    menu.innerHTML = ""
-  });
-  const salir = document.getElementById("logout");
-  salir.addEventListener("click", () => {
-    setTimeout(() => {
-      window.location = "/";
-    }, 2000);
+    menu.innerHTML = "";
   });
 });
 
+const logout = () => {
+  fetch("/api/sessions/logout")
+    .then((res) => res.json())
+    .then((json) => {
+      if (json.status === "success") {
+        setTimeout(() => {
+          window.location.replace("/");
+        }, 500);
+      }
+    });
+};

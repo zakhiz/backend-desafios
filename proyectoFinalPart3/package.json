@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon src/app.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha test/ultimateTest.test.js"
   },
   "keywords": [],
   "author": "",
@@ -21,5 +21,10 @@
     "mongoose": "^6.8.4",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.0"
+  },
+  "devDependencies": {
+    "chai": "^4.3.7",
+    "mocha": "^10.2.0",
+    "supertest": "^6.3.3"
   }
 }

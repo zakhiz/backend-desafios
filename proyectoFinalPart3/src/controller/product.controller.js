@@ -15,6 +15,7 @@ const getById = async (req, res) => {
 
 const add = async (req, res) => {
   const { model, characteristics, stock, price, image } = req.body;
+  console.log(req.body);
   if (!model || !characteristics || !stock || !price || !image)
     return res
       .status(400)
